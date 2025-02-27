@@ -37,5 +37,33 @@ namespace negocio
             }
             finally { datos.cerrarConexion(); }
         }
+
+        public List<Estilo> listarConSp()
+        {
+            List<Estilo> lista = new List<Estilo>();
+            AccesoDatos datos = new AccesoDatos();
+
+            try
+            {
+                datos.setearStoredProcedure("storedListarEstilos");
+                datos.ejecutarLectura();
+
+                while (datos.Lector.Read())
+                {
+                    Estilo aux = new Estilo();
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Descripcion = (string)datos.Lector["Descripcion"];
+
+                    lista.Add(aux);
+                }
+                return lista;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { datos.cerrarConexion(); }
+        }
     }
 }

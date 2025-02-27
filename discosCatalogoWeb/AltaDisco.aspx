@@ -47,7 +47,7 @@
         <%-- contenedor del formulario --%>
         <%-- contenedor del boton agregar --%>
         <div class="d-flex justify-content-center my-2">
-            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary" />
+            <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary" OnClick="btnAgregar_Click"/>
         </div>
     </div>
 </asp:Content>

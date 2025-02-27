@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using static System.Net.WebRequestMethods;
+using dominio;
 
 namespace discosCatalogoWeb
 {
@@ -13,7 +14,7 @@ namespace discosCatalogoWeb
     {
         protected void Page_Load(object sender, EventArgs e)
         {
- 
+
         }
 
         protected void txbUrlImagen_TextChanged(object sender, EventArgs e)
@@ -32,6 +33,17 @@ namespace discosCatalogoWeb
             }
         }
 
+        protected void btnAgregar_Click(object sender, EventArgs e)
+        {
+            Disco nuevo = new Disco();
+            nuevo.Titulo = txbTitulo.Text;
+            nuevo.FechaDeLanzamiento = DateTime.Parse(txbFecha.Text);
+            nuevo.CantCanciones = int.Parse(txbCantCanciones.Text);
+            nuevo.UrlImagen = txbUrlImagen.Text;
+            nuevo.Estilo = new Estilo();
+            nuevo.TipoEdicion = new TipoEdicion();
+        }
+
         //funcion que valida si el url de la imagen obtiene una respuesta, si recibe alguna retornará true, si no retornará false
         private bool validarLinkImg(string imgUrl)
         {
@@ -47,7 +59,5 @@ namespace discosCatalogoWeb
                 return false;
             }
         }
-
-
     }
 }
