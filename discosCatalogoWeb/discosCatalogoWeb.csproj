@@ -67,12 +67,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AltaDisco.aspx" />
+    <Content Include="Catalogo.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Listado.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AltaDisco.aspx.cs">
+      <DependentUpon>AltaDisco.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AltaDisco.aspx.designer.cs">
+      <DependentUpon>AltaDisco.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Catalogo.aspx.cs">
+      <DependentUpon>Catalogo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Catalogo.aspx.designer.cs">
+      <DependentUpon>Catalogo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

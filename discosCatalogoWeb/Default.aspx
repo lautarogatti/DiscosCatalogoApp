@@ -6,7 +6,7 @@
         <h1 class="mb-4">Bienvenido al Catálogo de discos app!</h1>
         <p>En esta aplicación web, podras registrar y gestionar tu catálogo de discos que hayas registrado por este medio o en nuestra versión de escritorio</p>
         <div class="d-flex justify-content-center">
-            <a href="#" class="btn btn-primary">Comenzar</a>
+            <a href="Listado.aspx" class="btn btn-primary">Comenzar</a>
         </div>
     </main>
 </asp:Content>
