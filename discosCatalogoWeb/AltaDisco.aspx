@@ -40,7 +40,7 @@
             
             <%-- contenedor de la img --%>
             <div class="col">
-                <asp:Image ID="imgThubnail" runat="server" ImageUrl="https://dynamoprojects.com/wp-content/uploads/2022/12/no-image.jpg" AlternateText="" CssClass="img-thumbnail mt-5"/>
+                <asp:Image ID="imgThumbnail" runat="server" ImageUrl="https://dynamoprojects.com/wp-content/uploads/2022/12/no-image.jpg" AlternateText="" CssClass="img-thumbnail mt-5"/>
             </div>
             <div class="col-1"></div>
         </div>

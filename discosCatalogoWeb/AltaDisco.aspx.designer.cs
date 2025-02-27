@@ -69,13 +69,13 @@ namespace discosCatalogoWeb
         protected global::System.Web.UI.WebControls.DropDownList ddlEdicion;
 
         /// <summary>
-        /// imgThubnail control.
+        /// imgThumbnail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgThubnail;
+        protected global::System.Web.UI.WebControls.Image imgThumbnail;
 
         /// <summary>
         /// btnAgregar control.
