@@ -13,5 +13,11 @@ namespace discosCatalogoWeb
         {
 
         }
+
+        protected void txbUrlImagen_TextChanged(object sender, EventArgs e)
+        {
+            string urlImg = txbUrlImagen.Text;
+            imgThubnail.ImageUrl = urlImg;
+        }
     }
 }

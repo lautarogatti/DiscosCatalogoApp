@@ -25,8 +25,8 @@
                     <asp:TextBox ID="txbCantCanciones" runat="server" CssClass="form-control"></asp:TextBox>
                 </div>
                 <div class="mb-3">
-                    <label for="txbUrlImagen" class="form-label">Url de Caratula</label>
-                    <asp:TextBox ID="txbUrlImagen" runat="server" CssClass="form-control"></asp:TextBox>
+                    <label for="txbUrlImagen" class="form-label">Url de Caratula:</label>
+                    <asp:TextBox ID="txbUrlImagen" runat="server" CssClass="form-control" OnTextChanged="txbUrlImagen_TextChanged" AutoPostBack="true"></asp:TextBox>
                 </div>
                 <div class="mb-3">
                     <label for="ddlEstilo" class="form-label">Estilo del disco:</label>
@@ -40,7 +40,6 @@
             
             <%-- contenedor de la img --%>
             <div class="col">
-                <%--<img class="img-thumbnail" src="https://dynamoprojects.com/wp-content/uploads/2022/12/no-image.jpg" alt="" />--%>
                 <asp:Image ID="imgThubnail" runat="server" ImageUrl="https://dynamoprojects.com/wp-content/uploads/2022/12/no-image.jpg" AlternateText="" CssClass="img-thumbnail mt-5"/>
             </div>
             <div class="col-1"></div>
