@@ -7,14 +7,27 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using static System.Net.WebRequestMethods;
 using dominio;
+using negocio;
 
 namespace discosCatalogoWeb
 {
     public partial class AltaDisco : System.Web.UI.Page
     {
+        List<Estilo> estilos;
+        List<TipoEdicion> ediciones;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            EstiloService eService = new EstiloService();
+            TipoEdicionService teService = new TipoEdicionService();
+            estilos = eService.listarConSp();
+            ediciones = teService.listarConSp();
+            if (!IsPostBack)
+            {
+                ddlEstilo.DataSource = estilos;
+                ddlEdicion.DataSource = ediciones;
+                ddlEdicion.DataBind();
+                ddlEstilo.DataBind();
+            }
         }
 
         protected void txbUrlImagen_TextChanged(object sender, EventArgs e)
@@ -41,7 +54,11 @@ namespace discosCatalogoWeb
             nuevo.CantCanciones = int.Parse(txbCantCanciones.Text);
             nuevo.UrlImagen = txbUrlImagen.Text;
             nuevo.Estilo = new Estilo();
+            Estilo eSeleccionado = estilos[ddlEstilo.SelectedIndex];
+            nuevo.Estilo.Id = eSeleccionado.Id;
             nuevo.TipoEdicion = new TipoEdicion();
+            TipoEdicion teSeleccionado = ediciones[ddlEdicion.SelectedIndex];
+            nuevo.TipoEdicion.Id = teSeleccionado.Id;
         }
 
         //funcion que valida si el url de la imagen obtiene una respuesta, si recibe alguna retornará true, si no retornará false
