@@ -52,15 +52,26 @@ namespace discosCatalogoWeb
 
         protected void btnAgregar_Click(object sender, EventArgs e)
         {
-            Disco nuevo = new Disco();
-            nuevo.Titulo = txbTitulo.Text;
-            nuevo.FechaDeLanzamiento = DateTime.Parse(txbFecha.Text);
-            nuevo.CantCanciones = int.Parse(txbCantCanciones.Text);
-            nuevo.UrlImagen = txbUrlImagen.Text;
-            nuevo.Estilo = new Estilo();
-            nuevo.Estilo.Id = int.Parse(ddlEstilo.SelectedItem.Value);
-            nuevo.TipoEdicion = new TipoEdicion();
-            nuevo.TipoEdicion.Id = int.Parse(ddlEdicion.SelectedItem.Value);
+            try
+            {
+                DiscoService service = new DiscoService();
+                Disco nuevo = new Disco();
+                nuevo.Titulo = txbTitulo.Text;
+                nuevo.FechaDeLanzamiento = DateTime.Parse(txbFecha.Text);
+                nuevo.CantCanciones = int.Parse(txbCantCanciones.Text);
+                nuevo.UrlImagen = txbUrlImagen.Text;
+                nuevo.Estilo = new Estilo();
+                nuevo.Estilo.Id = int.Parse(ddlEstilo.SelectedItem.Value);
+                nuevo.TipoEdicion = new TipoEdicion();
+                nuevo.TipoEdicion.Id = int.Parse(ddlEdicion.SelectedItem.Value);
+                service.agregarConSp(nuevo);
+                Response.Redirect("Listado.aspx", false);
+            }
+            catch (Exception ex)
+            {
+                Session.Add("error", ex);
+                throw;
+            }
         }
 
         //funcion que valida si el url de la imagen obtiene una respuesta, si recibe alguna retornará true, si no retornará false

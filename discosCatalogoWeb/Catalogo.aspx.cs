@@ -14,16 +14,8 @@ namespace discosCatalogoWeb
         public List<Disco> listaDiscos { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["listaDiscos"] != null)
-            {
-                listaDiscos = (List<Disco>)Session["listaDiscos"];
-            }
-            else
-            {
                 DiscoService service = new DiscoService();
                 listaDiscos = service.listarConSp();
-                Session.Add("listaDiscos", listaDiscos);
-            }
 
             //if (!IsPostBack)
             //{

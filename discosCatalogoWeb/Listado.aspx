@@ -13,7 +13,7 @@
             AutoGenerateColumns="false" 
             CssClass="mt-3 table" 
             AllowPaging="true" 
-            PageSize="2" 
+            PageSize="5" 
             OnPageIndexChanging="dgvListadoDiscos_PageIndexChanging"
             OnRowDataBound="dgvListadoDiscos_RowDataBound"
             OnSelectedIndexChanged="dgvListadoDiscos_SelectedIndexChanged"
