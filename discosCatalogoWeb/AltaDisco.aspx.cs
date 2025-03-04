@@ -24,7 +24,11 @@ namespace discosCatalogoWeb
             if (!IsPostBack)
             {
                 ddlEstilo.DataSource = estilos;
+                ddlEstilo.DataTextField = "Descripcion";
+                ddlEstilo.DataValueField = "Id";
                 ddlEdicion.DataSource = ediciones;
+                ddlEdicion.DataTextField = "Descripcion";
+                ddlEdicion.DataValueField = "Id";
                 ddlEdicion.DataBind();
                 ddlEstilo.DataBind();
             }
@@ -54,11 +58,9 @@ namespace discosCatalogoWeb
             nuevo.CantCanciones = int.Parse(txbCantCanciones.Text);
             nuevo.UrlImagen = txbUrlImagen.Text;
             nuevo.Estilo = new Estilo();
-            Estilo eSeleccionado = estilos[ddlEstilo.SelectedIndex];
-            nuevo.Estilo.Id = eSeleccionado.Id;
+            nuevo.Estilo.Id = int.Parse(ddlEstilo.SelectedItem.Value);
             nuevo.TipoEdicion = new TipoEdicion();
-            TipoEdicion teSeleccionado = ediciones[ddlEdicion.SelectedIndex];
-            nuevo.TipoEdicion.Id = teSeleccionado.Id;
+            nuevo.TipoEdicion.Id = int.Parse(ddlEdicion.SelectedItem.Value);
         }
 
         //funcion que valida si el url de la imagen obtiene una respuesta, si recibe alguna retornará true, si no retornará false
