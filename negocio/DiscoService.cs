@@ -116,6 +116,30 @@ namespace negocio
 
         }
 
+        public void agregarConSp(Disco disco)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearStoredProcedure("storedAgregarDisco");
+                //nombre de los parametros tienen que ser los mismos que los definidos en el procedimiento almacenado, estan puestos en el mismo orden simplemente para mas organizacion
+                datos.setearParametro("@titulo", disco.Titulo);
+                datos.setearParametro("@fechaLanz", disco.FechaDeLanzamiento);
+                datos.setearParametro("@cantCanciones", disco.CantCanciones);
+                datos.setearParametro("@urlImagen", disco.UrlImagen);
+                datos.setearParametro("@idEstilo", disco.Estilo.Id);
+                datos.setearParametro("@idTipoEdicion", disco.TipoEdicion.Id);
+
+                datos.ejecutarAccion();
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally { datos.cerrarConexion(); }
+        }
+
         public void modificar(Disco disco)
         {
             AccesoDatos datos = new AccesoDatos();
