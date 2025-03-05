@@ -34,6 +34,7 @@ namespace discosCatalogoWeb
             }
         }
 
+        //evento que se encarga de cargar y mostrar la imagen en el formulario utilizando la url facilitada por el usuario si es que esta es una url válida, sino mostrara una imagen de error
         protected void txbUrlImagen_TextChanged(object sender, EventArgs e)
         {
             string urlImg = txbUrlImagen.Text;

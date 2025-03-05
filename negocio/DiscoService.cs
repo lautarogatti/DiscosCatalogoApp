@@ -11,13 +11,18 @@ namespace negocio
 {
     public class DiscoService
     {
-        public List<Disco> listarDiscos()
+        public List<Disco> listarDiscos(string id = "")
         {
             List<Disco> lista = new List<Disco>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("SELECT D.Id IdDisco, D.Titulo, D.FechaLanzamiento, D.CantidadCanciones, D.UrlImagenTapa, E.Id IdEstilo, E.Descripcion Estilo, TE.Id IdEdicion, TE.Descripcion TipoEdicion, D.Activo FROM DISCOS D, ESTILOS E, TIPOSEDICION TE WHERE E.Id = D.IdEstilo AND TE.Id = D.IdTipoEdicion");
+                string consulta = "SELECT D.Id IdDisco, D.Titulo, D.FechaLanzamiento, D.CantidadCanciones, D.UrlImagenTapa, E.Id IdEstilo, E.Descripcion Estilo, TE.Id IdEdicion, TE.Descripcion TipoEdicion, D.Activo FROM DISCOS D, ESTILOS E, TIPOSEDICION TE WHERE E.Id = D.IdEstilo AND TE.Id = D.IdTipoEdicion";
+                if (id != "")
+                {
+                    consulta += " AND D.id = " + id;
+                }
+                datos.setearConsulta(consulta);
                 datos.ejecutarLectura();
 
                 while (datos.Lector.Read())
