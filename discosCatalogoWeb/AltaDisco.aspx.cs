@@ -15,6 +15,7 @@ namespace discosCatalogoWeb
     {
         List<Estilo> estilos;
         List<TipoEdicion> ediciones;
+        Disco seleccionado;
         protected void Page_Load(object sender, EventArgs e)
         {
             EstiloService eService = new EstiloService();
@@ -31,6 +32,21 @@ namespace discosCatalogoWeb
                 ddlEdicion.DataValueField = "Id";
                 ddlEdicion.DataBind();
                 ddlEstilo.DataBind();
+
+                if (Request.QueryString["id"] != null)
+                {
+                    DiscoService service = new DiscoService();
+                    seleccionado = service.listarDiscos(Request.QueryString["id"])[0];
+
+                    txbTitulo.Text = seleccionado.Titulo;
+                    txbFecha.Text = seleccionado.FechaDeLanzamiento.Date.ToString("yyyy-MM-dd");
+                    txbCantCanciones.Text = seleccionado.CantCanciones.ToString();
+                    txbUrlImagen.Text = seleccionado.UrlImagen;
+                    //posiblemente haya que validar esta linea de codigo para hacer una validacion antes de cargar la imagen
+                    imgThumbnail.ImageUrl = seleccionado.UrlImagen;
+                    ddlEstilo.SelectedValue = seleccionado.Estilo.Id.ToString();
+                    ddlEdicion.SelectedValue = seleccionado.TipoEdicion.Id.ToString();
+                }
             }
         }
 
