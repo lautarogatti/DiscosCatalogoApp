@@ -15,7 +15,6 @@ namespace discosCatalogoWeb
     {
         List<Estilo> estilos;
         List<TipoEdicion> ediciones;
-        Disco seleccionado;
         protected void Page_Load(object sender, EventArgs e)
         {
             EstiloService eService = new EstiloService();
@@ -36,9 +35,10 @@ namespace discosCatalogoWeb
                 if (Request.QueryString["id"] != null)
                 {
                     DiscoService service = new DiscoService();
-                    seleccionado = service.listarDiscos(Request.QueryString["id"])[0];
+                    Disco seleccionado = service.listarDiscos(Request.QueryString["id"])[0];
 
                     txbTitulo.Text = seleccionado.Titulo;
+                    //en algunos navegadores puede no mostrar la fecha ya que es un problema de compatibilidad de lectura entre navegadores, posiblemente la mejor solucion sea utilizar una caja de texto sin el tipo date
                     txbFecha.Text = seleccionado.FechaDeLanzamiento.Date.ToString("yyyy-MM-dd");
                     txbCantCanciones.Text = seleccionado.CantCanciones.ToString();
                     txbUrlImagen.Text = seleccionado.UrlImagen;
@@ -46,6 +46,7 @@ namespace discosCatalogoWeb
                     imgThumbnail.ImageUrl = seleccionado.UrlImagen;
                     ddlEstilo.SelectedValue = seleccionado.Estilo.Id.ToString();
                     ddlEdicion.SelectedValue = seleccionado.TipoEdicion.Id.ToString();
+                    btnAgregar.Text = "Modificar";
                 }
             }
         }
@@ -81,7 +82,15 @@ namespace discosCatalogoWeb
                 nuevo.Estilo.Id = int.Parse(ddlEstilo.SelectedItem.Value);
                 nuevo.TipoEdicion = new TipoEdicion();
                 nuevo.TipoEdicion.Id = int.Parse(ddlEdicion.SelectedItem.Value);
-                service.agregarConSp(nuevo);
+                if (Request.QueryString["id"] != null)
+                {
+                    nuevo.Id = int.Parse(Request.QueryString["id"]);
+                    service.modificar(nuevo);
+                }
+                else
+                {
+                    service.agregarConSp(nuevo);
+                }
                 Response.Redirect("Listado.aspx", false);
             }
             catch (Exception ex)
