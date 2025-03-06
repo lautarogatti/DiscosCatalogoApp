@@ -15,6 +15,7 @@ namespace discosCatalogoWeb
     {
         List<Estilo> estilos;
         List<TipoEdicion> ediciones;
+        public bool menuEliminarActivo = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             EstiloService eService = new EstiloService();
@@ -100,6 +101,35 @@ namespace discosCatalogoWeb
             }
         }
 
+        protected void btnMenuEliminar_Click(object sender, EventArgs e)
+        {
+            if (!menuEliminarActivo)
+            {
+                menuEliminarActivo = true;
+            }
+            else
+            {
+                menuEliminarActivo = false;
+            }
+        }
+
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            if (ckbEliminarConfirmacion.Checked)
+            {
+                try
+                {
+                    DiscoService service = new DiscoService();
+                    service.eliminar(int.Parse(Request.QueryString["id"]));
+                    Response.Redirect("Listado.aspx", false);
+                }
+                catch (Exception ex)
+                {
+                    Session.Add("Error", ex);
+                    throw;
+                }
+            }
+        }
         //funcion que valida si el url de la imagen obtiene una respuesta, si recibe alguna retornará true, si no retornará false
         private bool validarLinkImg(string imgUrl)
         {

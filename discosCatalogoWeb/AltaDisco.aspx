@@ -12,9 +12,11 @@
                     <%if (Request.QueryString["id"] != null)
                         { %>
                     <h1>Modificar disco</h1>
-                    <%} else { %>
+                    <%}
+                        else
+                        { %>
                     <h1>Ingreso de nuevo disco</h1>
-                    <%} %>
+                    <%}%>
                 </div>
                 <%-- envoltura --%>
                 <div class="container-fluid row">
@@ -54,8 +56,33 @@
                 </div>
                 <%-- contenedor del formulario --%>
                 <%-- contenedor del boton agregar --%>
-                <div class="d-flex justify-content-center my-2">
-                    <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary" OnClick="btnAgregar_Click" />
+                <div class="row">
+                    <div class="col-4"></div>
+                    <div class="col-4 d-flex justify-content-evenly my-2">
+                        <asp:Button ID="btnAgregar" runat="server" Text="Agregar" CssClass="btn btn-primary" OnClick="btnAgregar_Click" />
+                        <%if (Request.QueryString["id"] != null)
+                            {%>
+                        <asp:Button ID="btnMenuEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnMenuEliminar_Click" />
+                        <%} %>
+                    </div>
+                    <div class="col-4"></div>
+                    <%if (menuEliminarActivo)
+                        {%>
+                    <div class="row">
+                        <div class="col-4"></div>
+                        <div class="col-4 d-flex flex-column my-3 border border-danger rounded-3 py-2">
+                            <p class="text-center">Está seguro que desea eliminar? esta acción no se puede revertir</p>
+                            <div class="d-flex justify-content-evenly align-items-center">
+                                <div>
+                                    <asp:CheckBox ID="ckbEliminarConfirmacion" runat="server" />
+                                    <asp:Label ID="lblEliminarConfirmacion" runat="server" Text="Eliminar"></asp:Label>
+                                </div>
+                                <asp:Button ID="btnEliminar" runat="server" Text="Eliminar" CssClass="btn btn-outline-danger" OnClick="btnEliminar_Click" />
+                            </div>
+                        </div>
+                        <div class="col-4"></div>
+                    </div>
+                    <%} %>
                 </div>
             </div>
         </ContentTemplate>
