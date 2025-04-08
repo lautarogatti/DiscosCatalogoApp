@@ -16,6 +16,7 @@ namespace discosCatalogoWeb
         List<Estilo> estilos;
         List<TipoEdicion> ediciones;
         public bool menuEliminarActivo = false;
+        public bool menuDesactivarActivo = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             EstiloService eService = new EstiloService();
@@ -112,6 +113,17 @@ namespace discosCatalogoWeb
                 menuEliminarActivo = false;
             }
         }
+        protected void btnMenuDesactivar_Click(object sender, EventArgs e)
+        {
+            if (!menuDesactivarActivo)
+            {
+                menuDesactivarActivo = true;
+            }
+            else
+            {
+                menuDesactivarActivo = false;
+            }
+        }
 
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
@@ -145,5 +157,6 @@ namespace discosCatalogoWeb
                 return false;
             }
         }
+
     }
 }
