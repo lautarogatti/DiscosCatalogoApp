@@ -191,14 +191,16 @@ namespace negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("");
-
+                datos.setearConsulta("UPDATE discos SET Activo = 0 WHERE Id = @id");
+                datos.setearParametro("@id", id);
+                datos.ejecutarAccion();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
-                throw;
+                throw ex; 
             }
+            finally { datos.cerrarConexion(); }
         }
 
         public List<Disco> filtrar(string campo, string criterio, string clave)

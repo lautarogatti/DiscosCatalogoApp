@@ -92,7 +92,7 @@
                             <div class="d-flex flex-column align-items-center border border-warning rounded-3 p-2">
                                 <p class="text-center" >Está seguro que desea desactivar este disco? (Los discos desactivados solo se podrán ser visualizados en listados especiales que lo permitan)</p>
                                 <div class="d-flex align-items-center">
-                                    <asp:Button ID="btnDesactivar" runat="server" Text="Desactivar Disco" CssClass="btn btn-outline-warning"/>
+                                    <asp:Button ID="btnDesactivar" runat="server" Text="Desactivar Disco" CssClass="btn btn-outline-warning" OnClick="btnDesactivar_Click"/>
                                 </div>
                             </div>
                         </div>

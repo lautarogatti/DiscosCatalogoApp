@@ -113,18 +113,6 @@ namespace discosCatalogoWeb
                 menuEliminarActivo = false;
             }
         }
-        protected void btnMenuDesactivar_Click(object sender, EventArgs e)
-        {
-            if (!menuDesactivarActivo)
-            {
-                menuDesactivarActivo = true;
-            }
-            else
-            {
-                menuDesactivarActivo = false;
-            }
-        }
-
         protected void btnEliminar_Click(object sender, EventArgs e)
         {
             if (ckbEliminarConfirmacion.Checked)
@@ -142,6 +130,23 @@ namespace discosCatalogoWeb
                 }
             }
         }
+        protected void btnMenuDesactivar_Click(object sender, EventArgs e)
+        {
+            if (!menuDesactivarActivo)
+            {
+                menuDesactivarActivo = true;
+            }
+            else
+            {
+                menuDesactivarActivo = false;
+            }
+        }
+        protected void btnDesactivar_Click(object sender, EventArgs e)
+        {
+            DiscoService service = new DiscoService();
+            service.eliminarLogico(int.Parse(Request.QueryString["id"]));
+        }
+
         //funcion que valida si el url de la imagen obtiene una respuesta, si recibe alguna retornará true, si no retornará false
         private bool validarLinkImg(string imgUrl)
         {
