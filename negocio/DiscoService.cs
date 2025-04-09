@@ -190,13 +190,14 @@ namespace negocio
             finally { datos.cerrarConexion(); }
         }
 
-        public void eliminarLogico(int id)
+        public void eliminarLogico(int id, bool activo = false)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("UPDATE discos SET Activo = 0 WHERE Id = @id");
+                datos.setearConsulta("UPDATE discos SET Activo = @activo WHERE Id = @id");
                 datos.setearParametro("@id", id);
+                datos.setearParametro("@activo", activo);
                 datos.ejecutarAccion();
             }
             catch (Exception ex)

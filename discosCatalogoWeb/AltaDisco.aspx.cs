@@ -16,7 +16,6 @@ namespace discosCatalogoWeb
         List<Estilo> estilos;
         List<TipoEdicion> ediciones;
         public bool menuEliminarActivo = false;
-        public bool menuDesactivarActivo = false;
         protected void Page_Load(object sender, EventArgs e)
         {
             EstiloService eService = new EstiloService();
@@ -127,17 +126,29 @@ namespace discosCatalogoWeb
                 catch (Exception ex)
                 {
                     Session.Add("Error", ex);
-                    throw;
                 }
             }
         }
         protected void btnDesactivar_Click(object sender, EventArgs e)
         {
-            if(btnDesactivar.Text == "Desactivar Disco")
+            try
             {
-                DiscoService service = new DiscoService();
-                service.eliminarLogico(int.Parse(Request.QueryString["id"]));
-                Response.Redirect("Listado.aspx");
+                if (btnDesactivar.Text == "Desactivar Disco")
+                {
+                    DiscoService service = new DiscoService();
+                    service.eliminarLogico(int.Parse(Request.QueryString["id"]));
+                    Response.Redirect("Listado.aspx");
+                }
+                else
+                {
+                    DiscoService service = new DiscoService();
+                    service.eliminarLogico(int.Parse(Request.QueryString["id"]), true);
+                    Response.Redirect("Listado.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+                Session.Add("Error", ex);
             }
         }
 
