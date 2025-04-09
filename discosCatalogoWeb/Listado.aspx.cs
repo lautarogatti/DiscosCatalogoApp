@@ -13,7 +13,7 @@ namespace discosCatalogoWeb
         protected void Page_Load(object sender, EventArgs e)
         {
             DiscoService datos = new DiscoService();
-            dgvListadoDiscos.DataSource = datos.listarConSp();
+            dgvListadoDiscos.DataSource = datos.listarDiscos();
             dgvListadoDiscos.DataBind();
         }
 

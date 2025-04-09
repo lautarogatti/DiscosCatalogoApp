@@ -11,13 +11,17 @@ namespace negocio
 {
     public class DiscoService
     {
-        public List<Disco> listarDiscos(string id = "")
+        public List<Disco> listarDiscos(string id = "", bool onlyActives = false)
         {
             List<Disco> lista = new List<Disco>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "SELECT D.Id IdDisco, D.Titulo, D.FechaLanzamiento, D.CantidadCanciones, D.UrlImagenTapa, E.Id IdEstilo, E.Descripcion Estilo, TE.Id IdEdicion, TE.Descripcion TipoEdicion, D.Activo FROM DISCOS D, ESTILOS E, TIPOSEDICION TE WHERE E.Id = D.IdEstilo AND TE.Id = D.IdTipoEdicion AND D.Activo = 1";
+                string consulta = "SELECT D.Id IdDisco, D.Titulo, D.FechaLanzamiento, D.CantidadCanciones, D.UrlImagenTapa, E.Id IdEstilo, E.Descripcion Estilo, TE.Id IdEdicion, TE.Descripcion TipoEdicion, D.Activo FROM DISCOS D, ESTILOS E, TIPOSEDICION TE WHERE E.Id = D.IdEstilo AND TE.Id = D.IdTipoEdicion";
+                if (onlyActives)
+                {
+                    consulta += " AND D.Activo = 1 ";
+                }
                 if (id != "")
                 {
                     consulta += " AND D.id = " + id;

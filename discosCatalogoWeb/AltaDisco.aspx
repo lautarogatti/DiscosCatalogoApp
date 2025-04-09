@@ -63,7 +63,7 @@
                         <%if (Request.QueryString["id"] != null)
                             {%>
                         <asp:Button ID="btnMenuEliminar" runat="server" Text="Eliminar" CssClass="btn btn-danger" OnClick="btnMenuEliminar_Click" />
-                        <asp:Button ID="btnMenuDesactivar" runat="server" Text="Desactivar Disco" CssClass="btn btn-warning" OnClick="btnMenuDesactivar_Click" />
+                        <asp:Button ID="btnDesactivar" runat="server" Text="Desactivar Disco" CssClass="btn btn-warning" OnClick="btnDesactivar_Click"/>
                         <%} %>
                     </div>
                     <div class="col-4"></div>
@@ -82,21 +82,6 @@
                             </div>
                         </div>
                         <div class="col-4"></div>
-                    </div>
-                    <%} %>
-                    <%if (menuDesactivarActivo)
-                        {%>
-                    <div class="row">
-                        <div class="col-3"></div>
-                        <div class="col-6">
-                            <div class="d-flex flex-column align-items-center border border-warning rounded-3 p-2">
-                                <p class="text-center" >Está seguro que desea desactivar este disco? (Los discos desactivados solo se podrán ser visualizados en listados especiales que lo permitan)</p>
-                                <div class="d-flex align-items-center">
-                                    <asp:Button ID="btnDesactivar" runat="server" Text="Desactivar Disco" CssClass="btn btn-outline-warning" OnClick="btnDesactivar_Click"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-3"></div>
                     </div>
                     <%} %>
                 </div>

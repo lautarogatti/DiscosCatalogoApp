@@ -49,6 +49,7 @@ namespace discosCatalogoWeb
                     ddlEstilo.SelectedValue = seleccionado.Estilo.Id.ToString();
                     ddlEdicion.SelectedValue = seleccionado.TipoEdicion.Id.ToString();
                     btnAgregar.Text = "Modificar";
+                    btnDesactivar.Text = seleccionado.Activo ? "Desactivar Disco" : "Activar Disco";
                 }
             }
         }
@@ -130,21 +131,14 @@ namespace discosCatalogoWeb
                 }
             }
         }
-        protected void btnMenuDesactivar_Click(object sender, EventArgs e)
-        {
-            if (!menuDesactivarActivo)
-            {
-                menuDesactivarActivo = true;
-            }
-            else
-            {
-                menuDesactivarActivo = false;
-            }
-        }
         protected void btnDesactivar_Click(object sender, EventArgs e)
         {
-            DiscoService service = new DiscoService();
-            service.eliminarLogico(int.Parse(Request.QueryString["id"]));
+            if(btnDesactivar.Text == "Desactivar Disco")
+            {
+                DiscoService service = new DiscoService();
+                service.eliminarLogico(int.Parse(Request.QueryString["id"]));
+                Response.Redirect("Listado.aspx");
+            }
         }
 
         //funcion que valida si el url de la imagen obtiene una respuesta, si recibe alguna retornará true, si no retornará false

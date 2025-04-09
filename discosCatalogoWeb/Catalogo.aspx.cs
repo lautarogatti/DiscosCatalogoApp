@@ -15,7 +15,7 @@ namespace discosCatalogoWeb
         protected void Page_Load(object sender, EventArgs e)
         {
                 DiscoService service = new DiscoService();
-                listaDiscos = service.listarConSp();
+                listaDiscos = service.listarDiscos("", true);
 
             //if (!IsPostBack)
             //{
